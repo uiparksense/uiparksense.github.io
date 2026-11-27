@@ -1,0 +1,270 @@
+/* UI ParkSense — Golden Makara V4.1. Visual layer only; Supabase/RLS logic lives in app.js. */
+:root{--green:#06472e;--deep:#053924;--cream:#f8f9f6;--paper:#fffefa;--text:#182a21;--muted:#718077;--stroke:#e4e9dd;--lime:#ffce26;--lime-soft:#fff5d0;--mint:#edf5ec;--yellow:#f8c822;--shadow:0 6px 20px rgba(14,53,35,.065)}
+body{background:#f8f9f6;color:#19281f;font-family:'DM Sans',system-ui,sans-serif}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.hidden{display:none!important}
+/* Rich dark-green campus navigation, with yellow Makara identity */
+.sidebar{width:240px;background:radial-gradient(circle at 5% 18%,#126747 0%,transparent 38%),linear-gradient(158deg,#075236 0%,#053d2a 60%,#063721 100%);padding:17px 14px 17px;overflow-x:hidden;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#548066 transparent;box-shadow:3px 0 18px #0b33221b}
+.sidebar::before{content:"";position:absolute;bottom:48px;left:-55px;width:270px;height:165px;background:url('assets/makara/ui.png') center/contain no-repeat;opacity:.09;filter:grayscale(1) brightness(4);pointer-events:none}
+.sidebar::after{content:"";position:absolute;left:-35px;right:-28px;bottom:0;height:64px;background:linear-gradient(130deg,#d39e00,#ffce26,#ffe17e);clip-path:polygon(0 88%,25% 78%,52% 70%,78% 46%,100% 5%,100% 100%,0 100%);opacity:.89;pointer-events:none}
+.brand{position:relative;display:flex;flex-direction:column;gap:4px;text-align:center;align-items:center;padding:7px 5px 33px;margin-bottom:17px;border-bottom:2px solid #e5bb2f}
+.brand::after{content:"";position:absolute;height:10px;width:75%;bottom:-5px;border-radius:50%;background:linear-gradient(90deg,transparent,#ffe77e,transparent);opacity:.17}
+.brand-icon{height:80px;width:80px;transform:none;background:transparent;border-radius:0;box-shadow:none}
+.brand-icon img{width:78px;height:78px;object-fit:contain;filter:drop-shadow(0 5px 11px rgba(0,0,0,.12))}
+.brand-copy strong{font-size:23px;letter-spacing:-.9px;color:#ffce26}
+.brand-copy strong span{color:#fffef0}
+.brand-copy small{font-size:9px;letter-spacing:1.05px;line-height:1.7;color:#e7eccc;font-weight:600;margin:4px auto 0;max-width:172px}
+.nav-group-label{font-size:10px;letter-spacing:1.25px;color:#adcab5;padding:0 15px 8px}
+.nav-admin-label{margin-top:18px}
+.side-nav{gap:4px}
+.side-link{color:#e0ece3;font-size:12px;border:1px solid transparent;border-radius:10px;padding:12px 14px;transition:background .2s,color .2s,transform .2s}
+.side-link:hover{background:#ffffff19;color:#fff;transform:translateX(2px)}
+.side-link.active,.side-link.active:hover{background:linear-gradient(110deg,#ffeda9,#ffe182);color:#183b24;border-color:#ffe7a4;box-shadow:0 4px 11px #071e111a;transform:none}
+.side-link.active .nav-icon,.side-link.active .side-arrow{color:#224f2e}
+.nav-icon{font-size:20px;width:24px}
+.sidebar-bottom{position:relative;z-index:1;padding-bottom:30px}
+.sidebar-tip{padding:11px 13px;background:#ffffff10;border-color:#ffffff1f;border-radius:12px}
+.sidebar-tip strong{margin-top:8px;font-size:11px}
+.sidebar-tip p{font-size:10px;line-height:1.45}
+.side-footer{font-size:9px;line-height:1.5;padding:9px 7px 0;color:#c6d7bf}
+.tip-top{color:#ffe37e}
+/* Official-looking UI header, but visibly an independent prototype */
+.main-wrap{margin-left:240px;min-width:0}
+.topbar{height:77px;padding:0 26px;background:#fff;gap:18px;box-shadow:0 3px 14px rgba(16,47,33,.05);position:sticky;top:0;z-index:430;border-bottom:1px solid #edf0eb}
+.header-left{gap:18px;flex-shrink:0}
+.ui-wordmark{display:flex;align-items:center;gap:8px;min-width:175px;padding-right:18px;border-right:1px solid #d9ded9}
+.ui-wordmark img{width:47px;height:47px;object-fit:contain}
+.ui-wordmark strong{font:800 15px/1.06 'Plus Jakarta Sans',sans-serif;letter-spacing:-.6px;color:#191e18;display:block}
+.ui-wordmark small{font:italic 8px/1.15 Georgia,serif;color:#555e50;display:block;margin-top:4px;white-space:nowrap}
+.header-breadcrumb{font-size:12px;font-weight:700;color:#496053;white-space:nowrap}
+.header-breadcrumb b{font-weight:700;color:#2c3f33}.crumb-slash{padding:0 10px}
+.top-search{border:1px solid #dde5dc;border-radius:27px;background:#fff;box-shadow:0 3px 8px #193d2c13;display:flex;align-items:center;gap:10px;height:42px;max-width:490px;min-width:155px;flex:1;padding:3px 5px 3px 15px}
+.top-search>span{font-size:24px;line-height:1;color:#677c6d}
+.top-search input{flex:1;min-width:0;font-size:11px;border:0;outline:0;background:transparent;color:#26392d}
+.top-search input::placeholder{color:#87968b}
+.top-search button{border:0;background:#ffe082;border-radius:22px;padding:7px 15px;font-size:11px;font-weight:800;color:#24422d}
+.top-search button:hover{background:#ffce26}
+.header-right{gap:12px;flex-shrink:0}
+.sync-chip{border-radius:12px;padding:9px 11px;font-size:11px;background:#edf4e8;color:#386447;border-color:#d7e6d4}
+.sync-chip.live{background:#e4f4df;color:#28663b;border-color:#d7eccf}
+.head-login{background:#0c3c2e;color:#fff;font-size:10px;border-radius:12px;padding:11px 13px;box-shadow:0 3px 9px #07342324;transition:.2s}
+.head-login:hover{background:#1a6144;color:#fff}
+/* Homepage structure consistent with the approved design */
+.content{max-width:1660px;padding:25px 25px 42px}
+.greeting{display:none}
+.hero{background:#063f2a;min-height:264px;grid-template-columns:minmax(0,1.35fr) minmax(0,.7fr);border:1px solid #d2af36;border-radius:17px;box-shadow:0 9px 20px #163a2528;margin:0;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07462e 0%,#07462e 44%,rgba(7,64,42,.94) 54%,rgba(7,64,42,.36) 74%,transparent 99%);width:auto;height:auto;border:none;border-radius:0;box-shadow:none;z-index:1}
+.hero-content{padding:28px 35px 26px;z-index:5;max-width:790px}
+.hero-tag{font-size:9px;letter-spacing:1.1px;color:#e0efc9;font-weight:750}
+.hero-tag-dot{background:#ffcf25}
+.hero h2{font:800 clamp(26px,2.6vw,38px)/1.16 'Plus Jakarta Sans',sans-serif;letter-spacing:-1.6px;margin:13px 0 11px;max-width:730px;color:#fff}
+.hero em{color:#ffce2b}
+.hero p{font-size:12px;line-height:1.65;color:#e8f0e7;max-width:560px;margin:0 0 18px}
+.hero-input{border-radius:30px;max-width:720px;height:48px;padding:4px 5px 4px 18px;box-shadow:0 4px 16px #072f231f}
+.hero-input input{font-size:12px;letter-spacing:.01em}
+.hero-input button{background:linear-gradient(140deg,#ffe477,#ffca23);border-radius:24px;padding:10px 22px;font-size:12px;box-shadow:0 2px 3px #87611726}
+.hero-input button:hover{background:linear-gradient(140deg,#ffe38b,#ffba06)}
+.hero-illustration{position:absolute;z-index:0;right:0;top:0;height:100%;width:49%;display:block;min-height:0;overflow:hidden}
+.hero-illustration img{width:100%;height:100%;object-fit:cover;object-position:57% 45%;display:block}
+.hero-image-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#06432d 0,transparent 44%,transparent 80%,rgba(2,37,24,.16))}
+.hero-watermark{position:absolute;z-index:2;pointer-events:none;width:195px;height:195px;object-fit:contain;opacity:.095;right:35%;top:4px;filter:grayscale(1) brightness(5)}
+.hero-gold-corner{position:absolute;right:0;bottom:0;height:75px;width:230px;z-index:2;pointer-events:none;background:linear-gradient(140deg,#ffe88d,#ffcc19);clip-path:polygon(38% 100%,64% 91%,79% 72%,100% 33%,100% 100%);opacity:.97}
+/* Summary bar: always report measured capacities, never fabricated free slots. */
+.stats-title{display:none}
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:17px 0 28px;background:linear-gradient(160deg,#fffefa,#fff8e7);border:1px solid #ead499;border-radius:16px;box-shadow:0 5px 16px #38270c13;overflow:hidden}
+.stats-grid .stat-box{display:flex;align-items:center;gap:13px;min-width:0;min-height:93px;padding:17px 20px;background:transparent;border:0;border-radius:0;box-shadow:none;position:relative}
+.stats-grid .stat-box:not(:last-child):after{content:"";position:absolute;right:0;top:23%;height:54%;width:1px;background:#e8dfd0}
+.stats-grid .stat-icon{display:grid;place-items:center;width:48px;height:48px;flex-shrink:0;border-radius:50%;font-size:25px;background:#fff1c4;color:#765604}
+.stats-grid .stat-icon.green{color:#285837;background:#e7f3e8}
+.stats-grid .stat-box>div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.stats-grid .stat-box small{font-size:11px;font-weight:700;color:#475d4e}
+.stats-grid .stat-box strong{font:800 clamp(17px,1.5vw,23px)/1.2 'Plus Jakarta Sans',sans-serif;color:#10402c;letter-spacing:-.6px;white-space:nowrap}
+.stats-grid .stat-box span:not(.stat-icon){font-size:9px;color:#8a8a7c;line-height:1.25}
+.demo-alert{margin:0 0 19px;font-size:11px;background:#fff9e9;border-color:#f1deb2}
+/* Show core feature first: 14 faculty parking cards with Golden Glow */
+.faculty-directory{margin-top:0;padding:0;background:none;border:0;box-shadow:none}
+.faculty-directory-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:17px;gap:16px}
+.faculty-directory-heading h2{font:800 clamp(22px,2.0vw,29px)/1.3 'Plus Jakarta Sans',sans-serif;color:#19291e;letter-spacing:-1px;margin:0 0 4px}
+.faculty-directory-heading h2:after{content:"";width:48px;height:3px;border-radius:5px;background:#ffcf2d;display:block;margin-top:5px}
+.faculty-directory-heading p{font-size:11px;color:#819081;margin:0}
+.faculty-kicker{display:none}
+.directory-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.faculty-view-switch{display:flex;align-items:center;gap:3px;border:1px solid #e4e5db;border-radius:23px;background:#fff;padding:4px;box-shadow:0 3px 11px #13251b0a}
+.faculty-view-switch button{border:0;border-radius:20px;background:transparent;padding:8px 13px;color:#667768;font-size:11px;font-weight:750;white-space:nowrap}
+.faculty-view-switch button.active{background:#0c4e33;color:#fff;box-shadow:0 2px 6px #0d3c2722}
+.faculty-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.faculty-card,.faculty-card:disabled{position:relative;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:17px 17px 14px;text-align:left;border:1.4px solid transparent;border-radius:17px;min-height:226px;overflow:hidden;isolation:isolate;box-shadow:0 4px 15px #163f250f;background:linear-gradient(#fffdfa,#fffdfa) padding-box,linear-gradient(135deg,#f1d799,#ece6d3,#eee6ce) border-box;opacity:1;cursor:default;transition:transform .29s,box-shadow .29s,background .29s}
+.faculty-card:before{height:2px;z-index:4}
+.faculty-card:hover,.faculty-card:focus-within,.faculty-card.chosen{transform:translateY(-5px);background:linear-gradient(#fffefa,#fffefa) padding-box,linear-gradient(115deg,#e3af13,#ffe379,#fff3c2,#dba108) border-box;box-shadow:0 12px 25px #17372021,0 0 19px #f4bc1827}
+.faculty-card:hover:after,.faculty-card:focus-within:after{left:150%}
+.faculty-card:hover:before,.faculty-card:focus-within:before{animation:v4glint .94s ease 1 both}
+.faculty-card-top{display:flex;gap:11px;align-items:flex-start;min-height:76px;position:relative;z-index:5}
+.faculty-makara{flex-shrink:0;width:67px;height:67px;border-radius:14px;object-fit:cover;border:1px solid #f5d66b;background:#ffe98e;box-shadow:0 3px 12px #a4771119}
+.faculty-card-heading{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:4px 79px 0 0;gap:5px}
+.faculty-card-heading strong{font:800 clamp(12px,1.0vw,14px)/1.35 'Plus Jakarta Sans',sans-serif;letter-spacing:-.3px;color:#1e3125}
+.faculty-code{margin:0;background:#fff2c9;color:#835e08;font-size:10px;line-height:1.1;border-radius:6px;padding:4px 6px}
+.faculty-label{position:absolute;right:0;top:0;max-width:90px;font-size:9px;font-weight:750;padding:6px 7px;border-radius:9px;text-align:center;line-height:1.25;white-space:normal}
+.faculty-label.pending{background:#eef1f4;color:#536981}.faculty-label.review{background:#fff1cf;color:#825a10}.faculty-label.ready{background:#e6f4e5;color:#297647}.faculty-label.not-mapped{background:#f4f4f1;color:#8b8f87}
+.faculty-card-caption{font-size:10px;line-height:1.5;color:#8a968a;margin:5px 0 0;position:relative;z-index:5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faculty-capacity-row{display:flex;justify-content:space-evenly;align-items:center;gap:10px;margin-top:auto;padding:11px 0 12px;border-top:1px solid #ebe9df;position:relative;z-index:5;font-size:11px;color:#687568}
+.faculty-capacity-row span{display:flex;align-items:center;gap:5px;white-space:nowrap}.faculty-capacity-row b{font-weight:850;color:#1b4a31;font-size:12px}
+.faculty-capacity-row i{width:1px;height:19px;background:#dddcd4;flex-shrink:0}
+.faculty-card-actions{display:flex;gap:8px;position:relative;z-index:7}
+.faculty-card-actions button{flex:1;border-radius:20px;padding:9px 6px;font-size:10px;line-height:1.15;font-weight:800;min-height:35px;transition:background .2s,transform .2s}
+.faculty-card-actions button:first-child{background:#fffefa;border:1px solid #94b19b;color:#1a5136}
+.faculty-card-actions button:last-child{background:linear-gradient(115deg,#ffe280,#ffca25);color:#2c331c;border:1px solid #efd069}
+.faculty-card-actions button:hover:not(:disabled){transform:translateY(-1px)}
+.faculty-card-actions button:first-child:hover{background:#eaf5e8}
+.faculty-card-actions button:last-child:hover{background:#ffcd20}
+.faculty-card-actions button:disabled{opacity:.4}
+.faculty-grid.list-mode{grid-template-columns:1fr;gap:10px}
+.faculty-grid.list-mode .faculty-card{min-height:106px;display:grid;grid-template-columns:minmax(180px,1.8fr) minmax(150px,1fr) minmax(150px,1fr);gap:15px;align-items:center}
+.faculty-grid.list-mode .faculty-card-caption{display:none}
+.faculty-grid.list-mode .faculty-card-top{min-height:63px}
+.faculty-grid.list-mode .faculty-capacity-row{margin:0;padding:10px 5px;border:0}
+.faculty-grid.list-mode .faculty-card-actions{align-self:center}
+.faculty-note{margin:15px 2px 0;background:#fff8e4;padding:12px 14px;border:1px solid #eadcad;border-radius:11px;font-size:11px;color:#756746}
+/* Linkable location cards stay separate from faculty summary; no invented availability. */
+.list-title{margin-top:29px}
+.parking-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.parking-card{grid-template-columns:87px minmax(0,1fr);min-height:248px;box-shadow:0 5px 17px #10352212}
+.parking-card-visual{background:linear-gradient(160deg,#fff4cc,#f3df9d);padding:9px}
+.parking-card-makara{height:68px;width:68px;border-radius:12px;box-shadow:0 3px 10px #7e521a24}
+.parking-visual-kicker{font-size:7px}
+.parking-card-body{padding:13px 12px 13px}
+.parking-card h3{font-size:13px;line-height:1.35}
+.parking-card .parking-value{margin:7px 0 3px}
+.parking-card .parking-value strong{font-size:18px}
+.parking-card .parking-value.pending-value strong{font-size:14px}
+.parking-card .card-footer{padding-top:8px}
+.card-actions button,.card-actions a{padding:9px 7px;font-size:9px;border-radius:20px}
+.card-actions a{background:linear-gradient(110deg,#ffdd72,#ffcc23)}
+.v4-shortcuts{display:none}
+.v3-plan-section{margin-top:16px}
+/* Dashboard petugas uses matching colors without altering its business logic. */
+.admin-top h1{color:#173d28}
+.admin-banner{border-left:4px solid #e9bd24}
+.admin-zone,.admin-summary-card{border-color:#e6e9e1}
+.login-submit,.zone-start-form>button,.directions{background:linear-gradient(110deg,#10472e,#1e6242)}
+.admin-open .top-search{visibility:hidden}
+.page-footer a{text-decoration:underline}
+/* Responsive, touch-friendly and reduced-motion support */
+@media(max-width:1540px){.topbar{padding:0 19px;gap:12px}.header-left{gap:10px}.ui-wordmark{min-width:155px;padding-right:10px}.top-search{max-width:400px}.faculty-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.faculty-card{padding:14px}.faculty-makara{width:56px;height:56px}.faculty-card-heading{padding-right:75px}.parking-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1230px){.top-search{max-width:280px}.header-breadcrumb{display:none}.faculty-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.faculty-grid.list-mode .faculty-card{grid-template-columns:minmax(160px,1.6fr) minmax(155px,1fr) minmax(165px,1fr)}.stat-box{padding:14px}.stats-grid .stat-box{padding:12px;gap:8px}.stats-grid .stat-icon{height:39px;width:39px;font-size:19px}}
+@media(max-width:950px){.ui-wordmark{display:none}.topbar{padding:0 13px}.header-breadcrumb{display:block}.top-search{max-width:450px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-grid .stat-box:nth-child(2):after{display:none}.stats-grid .stat-box{min-height:72px}.faculty-grid.list-mode .faculty-card{display:flex;min-height:200px;align-items:stretch}.faculty-grid.list-mode .faculty-capacity-row{margin-top:auto}}
+@media(max-width:750px){.sidebar{width:240px}.topbar{height:67px}.header-breadcrumb{display:none}.top-search{flex:1}.content{padding:14px 12px 28px}.hero{grid-template-columns:1fr;min-height:285px}.hero-content{padding:24px 22px 28px}.hero-illustration{width:70%;opacity:.45}.hero:before{background:linear-gradient(90deg,#063f2b 0%,rgba(6,63,43,.95) 46%,rgba(6,63,43,.63) 100%)}.hero h2{font-size:27px}.hero p{font-size:11px}.hero-watermark{display:none}.faculty-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.parking-cards{grid-template-columns:1fr}.faculty-card{min-height:218px}.sidebar-tip{padding:10px}}
+@media(max-width:540px){.topbar{gap:9px;padding:0 10px}.top-search{height:37px;min-width:0;padding:3px 7px}.top-search input{font-size:10px}.top-search button{display:none}.header-right{gap:6px}.sync-chip{font-size:0!important;padding:10px;border-radius:50%}.sync-chip .pulse{margin:0}.head-login{padding:8px 9px;font-size:0;min-width:37px;height:37px}.head-login span{font-size:16px;margin:0}.hero h2{font-size:25px}.hero-input{height:46px;padding-left:12px}.hero-input input{font-size:11px}.hero-input button{padding:10px 14px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:12px 0 20px}.stats-grid .stat-box{padding:10px;gap:8px;min-height:83px}.stats-grid .stat-icon{width:32px;height:32px;font-size:17px}.stats-grid .stat-box strong{font-size:15px;white-space:normal}.stats-grid .stat-box small{font-size:9px}.stats-grid .stat-box span:not(.stat-icon){font-size:8px}.faculty-directory-heading{align-items:start;flex-direction:column}.faculty-grid{grid-template-columns:1fr}.faculty-card{min-height:190px;padding:15px}.faculty-card-top{min-height:68px}.faculty-makara{width:60px;height:60px}.faculty-card-heading strong{font-size:13px}.faculty-card-caption{font-size:10px}.faculty-card-actions button{font-size:10px}.parking-card{grid-template-columns:92px minmax(0,1fr)}.parking-card-makara{height:70px;width:70px}.parking-card .card-actions{flex-wrap:wrap}.parking-card .card-actions>*{min-width:0}.demo-alert{font-size:10px}.faculty-grid.list-mode .faculty-card{min-height:190px}}
+@media(max-width:365px){.stats-grid .stat-box{padding:9px 6px}.parking-card{grid-template-columns:1fr}.parking-card-visual{min-height:115px}.parking-card-makara{width:60px;height:60px}.parking-card-body{padding:13px}}
+@media(hover:none){.faculty-card:hover{transform:none;box-shadow:0 4px 15px #163f250f}.faculty-card:active{box-shadow:0 8px 19px #7b5b152a}}
+@media(prefers-reduced-motion:reduce){.faculty-card,.faculty-card:before,.faculty-card:after,.side-link,.faculty-card-actions button{transition:none!important;animation:none!important}.faculty-card:hover,.faculty-card:focus-within{transform:none}}
+/* Ensure the mobile canvas is not offset by the persistent desktop sidebar. */
+@media(max-width:750px){
+ .main-wrap{margin-left:0!important;width:100%;max-width:100%;}
+ .site{width:100%;max-width:100%;overflow-x:clip}
+ .content{width:100%;max-width:100%;}
+ .sidebar{transform:translateX(-101%);}
+ .sidebar.mobile-open{transform:translateX(0)}
+ .hero-illustration{transform:none;margin-right:0}
+ .hero{width:100%;}
+ .stats-grid,.faculty-grid,.parking-cards{min-width:0}
+}
+
+/* UI ParkSense V4.3 production polish */
+.icon-sprite{position:absolute!important;left:-9999px!important;top:0;width:0!important;height:0!important;overflow:hidden;pointer-events:none}
+.ui-icon,.mini-svg{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round;vertical-align:-0.15em;flex:none}
+.nav-icon{display:inline-flex;align-items:center;justify-content:center;flex:none}
+.nav-icon .ui-icon{width:20px;height:20px}
+.stat-icon .ui-icon{width:23px;height:23px}
+.v4-shortcut-icon .ui-icon{width:23px;height:23px}
+.faculty-capacity-row span,.faculty-card-actions button,.vehicle-switch button,.small-action,.filter-search,.top-search label{display:inline-flex;align-items:center;gap:5px}
+.faculty-capacity-row .mini-svg{width:15px;height:15px;color:#265c44}
+.faculty-card-actions .mini-svg{width:13px;height:13px}
+.vehicle-switch .ui-icon,.small-action .ui-icon{width:16px;height:16px}
+.search-symbol .ui-icon{width:21px;height:21px}
+.top-search .ui-icon,.filter-search .ui-icon{width:16px;height:16px}
+/* Physical order: Dashboard → Map → Locations → 14 faculties */
+#beranda,#peta,#daftar,#fakultas{scroll-margin-top:105px}
+#peta,#daftar{scroll-margin-top:112px}
+/* Make summaries accurate and legible even when the whole campus has not been counted. */
+.stats-grid .stat-box strong[id^="stat"]{font-size:clamp(15px,1.6vw,24px);letter-spacing:-.6px;white-space:normal;overflow-wrap:anywhere}
+.stats-grid .stat-box span[id$="Note"]{font-size:10px;line-height:1.35;color:#667d70}
+@media(max-width:750px){#beranda,#peta,#daftar,#fakultas{scroll-margin-top:85px}}
+@media(max-width:540px){.stats-grid .stat-box strong[id^="stat"]{font-size:14px}.stats-grid .stat-box span[id$="Note"]{font-size:9px}}
+
+/* V4.4 — Form penyesuaian kapasitas per zona petugas */
+.capacity-editor{margin:16px 0 8px;padding:0;border:1px solid #d5e5d7;border-radius:16px;background:#f6faf4;overflow:hidden;color:#123d2c}
+.capacity-editor>summary{list-style:none;display:flex;align-items:center;gap:10px;cursor:pointer;padding:14px 16px;font-weight:800;font-size:14px;user-select:none}
+.capacity-editor>summary::-webkit-details-marker{display:none}
+.capacity-editor>summary::after{content:'⌄';font-size:19px;margin-left:auto;color:#4c785e;transform:translateY(-2px)}
+.capacity-editor[open]>summary::after{transform:rotate(180deg)}
+.capacity-editor>summary:hover{background:#eaf4e9}
+.capacity-edit-icon{display:inline-grid;place-items:center;background:#dcefe0;width:28px;height:28px;border-radius:9px;font-size:16px;color:#176142}
+.capacity-edit-hint{font-weight:500;font-size:11px;color:#678171;margin-left:3px}
+.capacity-edit-form{border-top:1px solid #d5e5d7;padding:16px;display:grid;gap:13px}
+.capacity-edit-help{font-size:12px;line-height:1.6;color:#486657;margin:0}
+.capacity-edit-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.capacity-edit-form label{display:grid;gap:6px;font-weight:700;font-size:12px;color:#254b38}
+.capacity-edit-form input[type="number"],.capacity-edit-form input[type="text"]{width:100%;min-width:0;box-sizing:border-box;background:#fff;border:1px solid #c9d9cc;border-radius:10px;padding:11px 12px;font:inherit;font-size:14px;color:#142b1d}
+.capacity-edit-form input:focus-visible{outline:3px solid #eac24f;outline-offset:1px}
+.capacity-edit-form .capacity-edit-confirm{display:flex;align-items:flex-start;gap:9px;font-size:12px;font-weight:500;line-height:1.5}
+.capacity-edit-confirm input{margin-top:3px;flex-shrink:0}
+.capacity-edit-form button[type="submit"]{background:#164b36;color:#fff;border:1px solid #164b36;border-radius:11px;padding:12px 16px;font-weight:800;cursor:pointer}
+.capacity-edit-form button[type="submit"]:hover{background:#0d3928}
+.capacity-edit-form button:disabled{opacity:.55;cursor:not-allowed}
+.capacity-edit-form>small{color:#64806d;font-size:11px;line-height:1.6}
+@media(max-width:560px){.capacity-edit-inputs{grid-template-columns:1fr}.capacity-edit-hint{display:none}.capacity-editor>summary{font-size:13px}}
+
+/* V4.4.1 — slot kosong per fakultas, tanpa angka kapasitas saat belum dihitung */
+.faculty-capacity-row span{flex:1;min-width:0;justify-content:center;white-space:normal;flex-wrap:wrap;text-align:center;gap:4px}
+.faculty-capacity-row b.pending-value{color:#506981;font-size:10px;font-weight:800;line-height:1.25}
+.faculty-capacity-row .mini-svg{flex:none}
+.faculty-grid.list-mode .faculty-capacity-row{gap:8px}
+
+
+/* UI ParkSense V4.5 — Pusat Bantuan (FAQ dan formulir masukan) */
+#bantuan{scroll-margin-top:112px}
+.ps-help{margin-top:34px;margin-bottom:32px;display:block}
+.ps-help-header{position:relative;display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(112deg,#0b4835 0%,#0b5740 68%,#115f46 100%);border:1px solid rgba(255,214,85,.65);border-radius:22px;padding:27px 32px;overflow:hidden;box-shadow:0 10px 25px rgba(15,65,42,.09)}
+.ps-help-header:after{content:"";position:absolute;top:-110px;right:60px;width:290px;height:290px;border:1px solid rgba(255,255,255,.10);border-radius:50%;pointer-events:none}
+.ps-help-eyebrow{color:#f7d76a;font-size:11px;letter-spacing:1.8px;font-weight:800}
+.ps-help-header h2{color:#fff;margin:8px 0;font-size:clamp(24px,2.3vw,35px);letter-spacing:-1.1px;line-height:1.16}
+.ps-help-header h2 em{font-style:normal;color:#ffdc5f}
+.ps-help-header p{color:#dfebe2;margin:0;font-size:13px;line-height:1.65;max-width:620px}
+.ps-help-header-icon{flex:none;display:grid;place-items:center;background:rgba(252,216,86,.17);border:1px solid rgba(255,220,80,.45);color:#ffe081;width:68px;height:68px;border-radius:20px}
+.ps-help-header-icon .ui-icon{width:36px;height:36px}
+.ps-help-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(265px,.8fr);align-items:stretch;gap:22px;margin-top:22px}
+.ps-help-faq,.ps-feedback{min-width:0;border:1px solid #e0e9db;border-radius:20px;padding:24px;background:#fffefa;box-shadow:0 7px 24px rgba(22,65,42,.05)}
+.ps-help-card-heading{display:flex;align-items:center;gap:13px;padding:0 0 19px;border-bottom:1px solid #e7ece5}
+.ps-help-icon{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:13px;background:#edf5e9;color:#216649}
+.ps-help-icon .ui-icon{width:24px;height:24px}
+.ps-help-card-heading h3{font-size:19px;font-weight:800;color:#163f2c;margin:0 0 3px;letter-spacing:-.4px}
+.ps-help-card-heading p{font-size:12px;margin:0;color:#77877d;line-height:1.5}
+.ps-faq{border-bottom:1px solid #e7ece5}
+.ps-faq:last-child{border-bottom:0}
+.ps-faq summary{list-style:none;display:flex;gap:14px;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 0;color:#163f2c;font-size:14px;line-height:1.4;font-weight:750;transition:color .2s}
+.ps-faq summary::-webkit-details-marker{display:none}
+.ps-faq summary:hover{color:#b28508}
+.ps-faq summary:focus-visible,.ps-feedback-link:focus-visible{outline:3px solid #f0cc4f;outline-offset:3px;border-radius:8px}
+.ps-faq-toggle{display:grid;place-items:center;flex:none;width:25px;height:25px;border-radius:50%;background:#f1f5ee;color:#32654b;font-size:19px;line-height:1}
+.ps-faq-toggle::before{content:"+";font-size:20px;transform:translateY(-1px)}
+.ps-faq[open] .ps-faq-toggle::before{content:"−"}
+.ps-faq[open] summary{color:#0b6546}
+.ps-faq-answer{font-size:13px;line-height:1.85;color:#526c5b;padding:0 33px 18px 0}
+.ps-faq-answer strong{color:#174a32}
+.ps-feedback{background:linear-gradient(162deg,#fffcf0 0%,#fffefa 60%,#f5f9ef 100%);border-color:#ebddae;display:flex;flex-direction:column;gap:0}
+.ps-feedback-pictogram{width:58px;height:58px;display:grid;place-items:center;border-radius:17px;background:#ffdd64;color:#295039;margin-bottom:23px;box-shadow:0 8px 20px rgba(205,153,0,.15)}
+.ps-feedback-pictogram .ui-icon{width:28px;height:28px}
+.ps-feedback-kicker{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#96720c}
+.ps-feedback h3{font-size:27px;letter-spacing:-1px;color:#123e2d;margin:8px 0 9px}
+.ps-feedback>p:not(.ps-feedback-hint){font-size:13px;line-height:1.85;color:#587060;margin:0 0 17px}
+.ps-feedback-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.ps-feedback-tags span{font-size:11px;color:#4f654f;background:#e9efe5;border:1px solid #d8e6d6;border-radius:30px;padding:7px 10px}
+.ps-feedback-link{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;background:#ffcf3b;color:#193c29;font-size:13px;font-weight:800;text-decoration:none;padding:15px 12px;border:1px solid #edc33a;transition:box-shadow .25s,transform .25s,background .25s}
+.ps-feedback-link .ui-icon{width:17px;height:17px}
+.ps-feedback-link:hover:not(.ps-feedback-link-disabled){background:#ffdc6d;box-shadow:0 8px 20px rgba(195,146,0,.2);transform:translateY(-2px)}
+.ps-feedback-link-disabled{background:#f6efcf;border-color:#e9dfb3;color:#807451;cursor:not-allowed;box-shadow:none}
+.ps-feedback-hint{font-size:11px;color:#776d4b;line-height:1.6;margin:10px 0 19px}
+.ps-feedback-meta{font-size:10px;line-height:1.65;color:#819082;border-top:1px solid #e7e4d6;padding-top:15px;margin-top:auto}
+@media(max-width:990px){.ps-help-grid{grid-template-columns:1fr}.ps-feedback{max-width:none}.ps-help-header{padding:24px}}
+@media(max-width:600px){#bantuan{scroll-margin-top:86px}.ps-help-header{padding:22px 18px;border-radius:17px}.ps-help-header h2{font-size:25px}.ps-help-header-icon{width:46px;height:46px;border-radius:13px}.ps-help-header-icon .ui-icon{width:25px;height:25px}.ps-help-grid{gap:14px;margin-top:14px}.ps-help-faq,.ps-feedback{padding:18px 16px;border-radius:16px}.ps-faq summary{font-size:13px}.ps-faq-answer{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.ps-feedback-link{transition:none!important}}

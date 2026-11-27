@@ -1,0 +1,2 @@
+// Salin config.js AKTIF dari V3.3 (jangan gunakan service_role/secret key).
+// window.PARKSENSE_CONFIG = {supabaseUrl: 'https://YOUR_PROJECT.supabase.co', supabaseAnonKey: 'YOUR_PUBLISHABLE_KEY'};

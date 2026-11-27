@@ -1,0 +1,33 @@
+UI ParkSense V4.4 — EDIT KAPASITAS OLEH PETUGAS
+=============================================
+
+PERUBAHAN V4.4 (hanya fitur nomor 1):
+- Tambah panel Ubah kapasitas total zona di Dashboard Petugas.
+- Motor/mobil yang telah didukung zona dapat dinaikkan/diturunkan kapasitas totalnya.
+- Dashboard Guest otomatis menghitung ulang slot kosong dari kapasitas - terisi jika zona sudah aktif.
+- Zona belum dihitung tetap Belum dihitung setelah edit kapasitas.
+- SQL RPC baru memeriksa penugasan, menolak zona tersembunyi/arsip, menolak perubahan jenis kendaraan, dan melarang kapasitas di bawah angka terisi.
+- Terdapat audit alasan perubahan, nilai lama/baru, ID petugas, dan waktu.
+- Tidak mengubah tabel parking_events dan tombol kendaraan masuk/keluar.
+- FAQ/Google Form BELUM dikerjakan (permintaan satu per satu).
+
+URUTAN INSTALASI (uji dahulu sebelum mengubah kapasitas sungguhan):
+1. Backup website V4.3 dan catat kapasitas sekarang di Supabase.
+2. Jalankan 14_IZIN_PETUGAS_UBAH_KAPASITAS_AMAN.sql satu kali di Supabase SQL Editor.
+   Periksa petugas_bisa_panggil=true dan guest_bisa_panggil=false.
+3. Salin config.js asli dari V4.3 ke folder website V4.4 yang berisi index.html.
+   JANGAN salin service_role key! Gunakan anon/publishable key seperti sebelumnya.
+4. Upload folder V4.4 lengkap ke Netlify Project uiparksense yang sama.
+5. Login dengan akun petugas berizin -> Dashboard Petugas -> buka panel Ubah kapasitas di salah satu zona yang benar-benar dikelola.
+6. Isi kapasitas benar yang sudah dicek lapangan dan alasan, centang konfirmasi, Simpan.
+7. Lihat Dashboard Guest: ketersediaan pada zona aktif akan berubah; pada zona belum aktif tetap Belum dihitung.
+8. Cek audit: jalankan SELECT contoh di akhir file SQL.
+
+PENTING:
+- Mengedit kapasitas produksi langsung berdampak pada angka slot kosong publik untuk zona aktif.
+- Setiap perubahan disimpan dengan alasan, tetapi tidak ada tombol Undo otomatis; untuk koreksi, edit lagi ke kapasitas sebelumnya dengan alasan.
+- Form hanya tampil pada zona yang merupakan tugas akun dan kapasitasnya sudah mendukung motor atau mobil.
+- Zona preview tidak bisa diedit. Zona tanpa public_visible=true ditolak server demi mencegah koreksi salah pada arsip lama.
+- Tanpa SQL baru, tombol simpan akan gagal dengan pesan bahwa RPC tidak tersedia.
+- Jika ingin menambah jenis kendaraan pada area yang awalnya tidak melayani jenis itu, mintalah pengelola memeriksa data zona terlebih dahulu.
+- Website tidak menyertakan config.js produksi. Jangan upload ZIP berisi file CONTOH sebagai config.js.

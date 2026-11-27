@@ -1,0 +1,13 @@
+UI ParkSense V5.3 — Mobile Experience / review build
+
+Berbasis V5.2.9 Geographic Only. Ekstrak folder baru, salin config.js publik yang sebelumnya berfungsi (anon/publishable key saja), buka index.html di Chrome. Untuk menguji HP, gunakan perangkat sendiri melalui hosting preview yang terpisah atau DevTools mobile di laptop. Jangan mengganti config.js produksi dengan file kosong. Tidak ada SQL atau migrasi database.
+
+Mobile <=760px: floating bottom navigation 4 tab (Beranda, Fakultas, Peta, Lainnya). Lainnya membuka Info, Bantuan, Tentang, Petugas. Fakultas menampilkan empat kartu awal dalam daftar; Lihat semua membuka direktori lengkap 14 fakultas; tombol Tampilan geser menampilkan seluruh carousel. Hero asli dan hotspot dipertahankan. Ringkasan zona berasal dari RPC; tidak menampilkan angka tiruan saat koneksi gagal. Map detail adalah elemen asli yang dipindahkan ke dialog modal (bottom sheet) ketika marker/selector/kartu dipilih, dikembalikan saat ditutup. Tautan arah tetap menggunakan koordinat tercatat. Peta koordinat tanpa jalan digunakan pada file lokal atau kegagalan tile. Animasi ringan, reduced motion didukung. Desktop tetap memakai detail di samping peta.
+
+Uji hanya-baca dengan data produksi. Jangan menulis kapasitas atau aktivitas percobaan. Pengujian lokal memakai data tiruan; logo online/OSM/WebSocket sungguhan, performa HP dan gesture browser asli perlu verifikasi. FAQ tetap ada, tautan Kritik & Saran belum disediakan. Foto lokasi sementara. Mode Atlas ilustratif sudah dihapus sejak V5.2.9. Tidak ada notifikasi atau mode kendaraan gabungan baru.
+
+Jika nanti dipublikasikan, gabungkan aset tanpa menghapus Makara, pertahankan config.js produksi, unggah seluruh file frontend baru termasuk mobile.js dan refinement.js pada branch terpisah. Main dan Supabase tidak diubah oleh paket ini.
+
+V5.4 Signature Motion: retains V5.3 desktop/mobile layout; decorative folder stack interpolation, coordinated hero entrance (image and hotspots together), button feedback, and exact-value transition after actual public data refresh. Initial/recovery loading has skeletons; failed reads remain explicit errors, no simulated counts. Reduced motion respected. No database or production changes. Copy only existing public config.js before local testing.
+
+V5.6: normalized keyword/vehicle search, alternative vehicle prompt, FAQ search, optional feedback-config.js (HTTPS Google Forms only, empty by default), staff step guidance and write lock on uncertain outcomes, persistent news error and connection retry on visibility/online. No new database tables. Keep config.js production; feedback URL is public and must be supplied by owner.

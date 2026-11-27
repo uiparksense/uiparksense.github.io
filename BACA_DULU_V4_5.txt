@@ -1,0 +1,27 @@
+UI PARKSENSE V4.5 — PUSAT BANTUAN (FAQ + KRITIK & SARAN)
+
+APA YANG BARU
+- Sidebar: Dashboard → Peta parkir → Daftar lokasi → 14 Fakultas UI → Pusat Bantuan.
+- 7 FAQ menggunakan elemen <details> yang bisa dibuka-tutup tanpa database.
+- Kartu Kritik & Saran yang membuka Google Form (setelah alamat diisi).
+- Tidak ada SQL, database baru, atau hak akses petugas baru.
+
+CARA MEMASANG GOOGLE FORM
+1. Buka file feedback-config.js memakai Notepad / VS Code.
+2. Ganti tanda kutip kosong pada window.PARKSENSE_FEEDBACK_FORM_URL = ''; menjadi URL lengkap formulir, misalnya https://forms.gle/xxxxx .
+3. Simpan file. Jangan mengubah config.js Supabase untuk hal ini.
+4. Jika URL belum ada, tombol tetap nonaktif secara jujur.
+
+CARA UPDATE NETLIFY (WINDOWS)
+1. Pastikan V4.4.1 yang sekarang berfungsi sudah di-backup.
+2. Ekstrak folder V4.5 ini.
+3. Salin config.js dari folder website V4.4.1 yang saat ini aktif. Gunakan hanya anon/publishable key, JANGAN service_role atau secret key.
+4. Pastikan file index.html, app.js, styles.css, premium-final.css, feedback-config.js, help-center.js, config.js dan folder assets ada pada tingkat folder yang sama.
+5. Netlify → project uiparksense → Deploys → Update project / drag & drop folder V4.5.
+6. Setelah Published, buka https://uiparksense.netlify.app dengan Ctrl+Shift+R.
+7. Uji sidebar Pusat Bantuan, buka/tutup FAQ, uji tombol formulir, lalu login Petugas untuk memastikan fitur lama tetap bekerja.
+
+PERHATIAN
+- Isi FAQ menjelaskan alur umum. Angka dan kondisi parkir asli tetap mengikuti Supabase.
+- Form tidak mengirim data ke Supabase: tanggapan masuk ke Google Form milik tim.
+- Jangan upload key rahasia Supabase dalam folder website.

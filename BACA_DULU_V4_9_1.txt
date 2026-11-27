@@ -1,0 +1,42 @@
+UI ParkSense V4.9.1 — Patch Berita Realtime (Windows)
+====================================================
+
+MASALAH DI V4.9
+Berita hanya dimuat ketika pengunjung membuka halaman. Tidak ada subscription
+perubahan berita. Status draft/arsip memang wajib terlindungi dengan RLS.
+
+CARA PASANG (URUTAN PENTING)
+1. Backup website V4.9 yang sedang berfungsi.
+2. Jalankan SQL `18_AKTIFKAN_REALTIME_BERITA_TANPA_MEMBUKA_DRAFT.sql`
+   di Supabase SQL Editor. Hasil harapan: true, true, true, dan revision angka.
+   Jangan ulang SQL 17; SQL 18 tidak menyentuh akun atau kapasitas.
+3. Salin config.js aktif dari V4.9 ke folder V4.9.1 ini (JANGAN gunakan
+   service_role key). Jika ada, salin feedback-config.js aktif.
+4. Upload folder V4.9.1 lengkap (berisi index.html) ke project Netlify SAMA.
+5. Setelah Published, Ctrl+Shift+R di perangkat petugas dan pengunjung.
+6. Tes: buka pengunjung (Info Parkir UI) di browser A, petugas login di B;
+   publish berita benar yang boleh dilihat publik -> A langsung bertambah.
+   Edit berita -> A berubah. Arsipkan -> A hilang tanpa refresh manual.
+   Jangan publikasi berita tes yang bisa menyesatkan pengguna sebenarnya.
+
+CARA KERJA
+- Trigger berita published menaikkan revision pada parking_news_signal.
+- Anon hanya dapat SELECT pada signal; angka revision tidak mengandung
+  judul, foto, isi, penulis, maupun data draft.
+- Frontend menerima event via Supabase Realtime dan memuat ulang berita
+  yang memang diizinkan oleh RLS.
+- Fallback pengecekan tiap 30 detik + ketika kembali ke tab aktif.
+- Halaman detail berita juga ikut menyegarkan isi / menyembunyikan arsip.
+- Tidak mengubah app.js, news-admin-v49.js, atau fungsi kendaraan/kapasitas.
+
+CATATAN
+Realtime memerlukan koneksi Supabase dan publication aktif. Jika WebSocket
+terhalang, pembaruan terjadi lewat fallback berkala, bukan seketika.
+Tidak ada data berita yang dikirim melalui sinyal publik.
+
+PERUBAHAN FILE
+- info-parkir-v48.js
+- info-parkir-v48.css
+- info-parkir-detail-v48.js
+- index.html (label koneksi)
+- SQL 18 + README

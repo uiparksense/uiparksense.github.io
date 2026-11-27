@@ -1,0 +1,38 @@
+UI PARKSENSE V4.7 — SMART ATTENDANT DASHBOARD (TAHAP 1)
+==========================================================
+
+APA YANG SUDAH BERFUNGSI
+- 3 kartu Dashboard Petugas: Kelola Kendaraan, Update Kapasitas, Kelola Berita.
+- Klik kartu untuk menampilkan satu panel saja (lebih rapi di laptop dan HP).
+- Kelola Kendaraan: tetap memakai RPC apply_parking_event dan alur aktivasi lama.
+- Update Kapasitas: tetap memakai RPC parksense_update_zone_capacity dari V4.4.
+- Kelola Berita: form dan PRATINJAU LOKAL. Belum menyimpan/menerbitkan apa pun.
+- Pencarian parkir, filter kendaraan, carousel, peta, FAQ, data Supabase guest tetap dipertahankan.
+
+BELUM ADA PADA TAHAP 1
+- Upload atau penerbitan berita ke Supabase. Tidak ada konten palsu di website publik.
+- Penggantian menu 14 Fakultas menjadi Info Parkir UI. Itu tahap 2/3 nanti.
+
+PANDUAN PEMASANGAN
+1. Backup folder V4.6 yang aktif di Netlify.
+2. Ekstrak ZIP V4.7 ini.
+3. Salin config.js PUBLIK dari V4.6 yang sudah berfungsi ke folder V4.7.
+   Jangan gunakan service_role key di frontend!
+4. Bila sudah punya URL Google Form, pindahkan feedback-config.js dari V4.6.
+5. Pastikan index.html, app.js, styles.css, premium-final.css,
+   vehicle-first.css, admin-v47.css, vehicle-first.js, help-center.js,
+   feedback-config.js, config.js, dan assets/ ada di akar folder yang di-upload.
+6. Update project NETLIFY LAMA: https://app.netlify.com/projects/uiparksense/deploys
+7. Setelah Published, buka website dalam Incognito; login petugas.
+8. Klik satu-satu kartu; uji TANPA menyimpan perubahan produksi dulu.
+
+TIDAK PERLU SQL BARU untuk tahap 1. Hak akses petugas dan status
+Belum dihitung ditentukan oleh Supabase sama seperti V4.6.
+
+CATATAN KEAMANAN
+- Jangan pernah memasukkan nilai dummy atau menambah/mengurangi kendaraan
+  sungguhan hanya untuk demonstrasi. Gunakan test environment atau data nyata.
+- Kapasitas baru tidak boleh lebih kecil dari jumlah terisi; otorisasi dilakukan
+  oleh RPC di Supabase.
+- Form berita HANYA PREVIEW. Tombol hanya membuat pratinjau di browser;
+  tidak ada publikasi atau penyimpanan ke database.

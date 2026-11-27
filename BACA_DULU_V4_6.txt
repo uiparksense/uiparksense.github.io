@@ -1,0 +1,32 @@
+UI PARKSENSE V4.6 — VEHICLE FIRST / INTERACTIVE CAROUSEL
+==========================================================
+PERUBAHAN:
+1) Halaman pertama menanyakan jenis kendaraan: Motor / Mobil, atau langsung lihat semua fakultas.
+2) Pilihan diingat selama tab browser (sessionStorage), tidak muncul setiap klik menu.
+3) Ganti kendaraan di header kapan saja; filter map, detail, carousel dan daftar ikut berganti.
+4) Carousel horizontal untuk menjelajahi zona sesuai jenis kendaraan dari Supabase.
+5) Daftar awal 6 zona, tombol Lihat lebih banyak untuk zona berikutnya.
+6) Kartu diringkas: Makara fakultas, nama, status dan slot kosong / Belum dihitung.
+7) Login/Admin, aktivasi, ubah kapasitas, peta dan FAQ V4.5 tidak dimodifikasi.
+
+PENTING:
+- Ini bukan mode demo. Data tetap dari Supabase asli; angka slot kosong hanya bila sudah dihitung petugas.
+- Tidak ada SQL baru.
+- Gambar placeholder carousel bukan foto lokasi fisik, melainkan motif dan Makara fakultas.
+- Semua fakultas bisa langsung dilihat di tombol 'Lihat semua fakultas tanpa memilih' saat awal.
+
+INSTALL WINDOWS:
+1) Backup folder V4.5 yang bekerja dan deployment Netlify sebelumnya.
+2) Salin config.js aktif dari folder V4.5 ke folder V4.6 ini (sejajar dengan index.html).
+   Jangan kirim atau upload credential service_role. Gunakan hanya publishable/anon key.
+3) Jika sudah punya URL Google Form, perbarui feedback-config.js di folder V4.6.
+4) Upload FOLDER ini ke deploys pada project Netlify uiparksense yang sama.
+5) Refresh paksa Ctrl+Shift+R atau buka Incognito untuk melihat prompt kendaraan.
+6) Tes pertama kali pilih motor, coba carousel/peta/daftar; ganti mobil dan cek hasil.
+7) Tes Dashboard Petugas & FAQ sebelum menganggap update sukses.
+8) Jika ada masalah, rollback ke deploy V4.5 pada Netlify.
+
+CATATAN UX:
+- Tombol 'lihat semua fakultas' membawa pengguna langsung ke katalog 14 fakultas yang menampilkan motor & mobil.
+- Daftar lokasi tetap mengikuti Motor/Mobil yang dipilih; untuk mengganti, gunakan tombol header.
+- SessionStorage menyimpan preferensi pilihan hanya untuk sesi tab, bukan ke database Supabase.

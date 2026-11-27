@@ -1,0 +1,23 @@
+UI ParkSense V4.4.1 — PERBAIKAN SLOT KOSONG FAKULTAS
+====================================================
+
+YANG DIPERBAIKI
+- Bagian "14 Fakultas UI" mode Kartu dan Daftar sekarang menampilkan SLOT KOSONG motor/mobil.
+- Jika penghitungan suatu jenis kendaraan belum dilakukan pada salah satu zona fakultas, nilai ditampilkan "Belum dihitung"; tidak lagi memperlihatkan angka kapasitas total seperti 458 motor / 40 mobil atau 264 motor / 141 mobil.
+- Jika zona relevan sudah semuanya aktif + dihitung, tampilkan total slot kosong (kapasitas dikurangi terisi) untuk kendaraan tersebut.
+- Jika jenis kendaraan tidak dilayani fakultas itu, tampil "—".
+- Status Belum dihitung pada kartu, dan statistik Dashboard utama, tetap mengikuti hitungan database.
+- Perubahan ini HANYA frontend. Tidak mengubah kapasitas, jumlah kendaraan terisi, operasi, admin, RPC, Supabase, ataupun SQL.
+- Fitur Ubah Kapasitas Petugas dari V4.4 tetap disertakan.
+
+CARA DEPLOY KE NETLIFY (PROJECT LAMA)
+1. Backup versi aktif V4.4.
+2. Salin config.js yang berfungsi dari website aktif ke folder yang sama dengan index.html versi ini.
+   JANGAN masukkan service_role key. Gunakan config publik Supabase seperti sebelumnya.
+3. Upload FOLDER situs ini (bukan folder induk atau SQL) ke Project uiparksense → Deploys.
+4. Tunggu Published lalu buka https://uiparksense.netlify.app/ dan Ctrl+Shift+R.
+5. Buka bagian 14 Fakultas UI → coba mode Kartu dan Daftar. Untuk zona yang belum dihitung,
+   angka slot kosong harus menjadi "Belum dihitung".
+6. Login petugas dan pastikan fitur pengubahan kapasitas serta tombol kendaraan tidak berubah.
+
+SQL BARU: TIDAK DIPERLUKAN. SQL V4.4 dalam folder hanya disertakan untuk referensi.

@@ -1,0 +1,33 @@
+UI PARKSENSE V4.9 — PUBLIKASI BERITA OLEH PETUGAS
+================================================
+
+URUTAN PEMASANGAN (Windows)
+1. Backup website V4.8 yang sedang berfungsi di Netlify.
+2. Buka Supabase → SQL Editor → New query.
+3. Jalankan SELURUH file 17_BERITA_RLS_STORAGE_PARKSENSE_V4_9.sql (jangan blok sebagian).
+   Skrip memasang tabel parking_announcements, kebijakan RLS, bucket Storage, dan fungsi keamanan.
+4. Periksa hasil SQL: guest_bisa_posting_harus_false = false.
+5. Salin config.js aktif yang memakai Supabase anon/publishable key ke folder V4.9 (jangan service_role).
+6. Salin feedback-config.js aktif jika sebelumnya sudah ditambahkan Google Form.
+7. Deploy folder WEB V4.9 lengkap ke Netlify project uiparksense YANG SAMA.
+8. Tes Guest melalui Incognito → menu Info Parkir UI (awal: Belum ada pengumuman).
+9. Tes akun petugas FT / fakultas lain → Kelola Berita → buat draft TANPA foto dahulu.
+10. Kembali ke panel berita, edit draft → Publikasikan → cek Guest Incognito dan halaman detail.
+11. Uji foto JPG di bawah 5MB; uji Arsipkan → berita hilang dari Guest.
+12. Tes akun fakultas lain tidak melihat atau mengubah berita draft milik FT.
+
+CATATAN KEAMANAN
+- Admin hanya boleh mengelola berita zona yang ditugaskan, dicek oleh RLS.
+- Zona lama tersembunyi / gabungan tidak bisa dipakai memposting berita.
+- Guest dapat membaca hanya berita yang published dan belum kedaluwarsa.
+- Tidak ada hapus permanen; gunakan Arsipkan.
+- Storage bucket gambar BERSIFAT PUBLIK: objek dapat diakses melalui URL langsung jika diketahui.
+  Jangan unggah foto orang tanpa persetujuan atau informasi sensitif.
+- Ukuran maksimal gambar 5 MB; JPG, PNG, WebP. Gambar lama tidak terhapus saat diarsipkan.
+- Jika penyimpanan berita gagal setelah upload gambar, file unggahan bisa tertinggal.
+- Jangan memakai news palsu seolah pengumuman resmi UI.
+- Gunakan hanya Supabase anon/publishable key di browser, jangan service_role.
+
+PEMBATASAN UJI
+Kode telah dicek sintaks lokal. Verifikasi hak akses RLS perlu pengujian di database projectmu
+setelah menjalankan SQL; kode tidak punya akses menjalankan migrasi di project pribadimu.

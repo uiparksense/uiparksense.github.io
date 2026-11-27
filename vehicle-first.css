@@ -1,0 +1,90 @@
+/* UI ParkSense V4.6 — Vehicle First / Editorial Carousel. Guest-only visual enhancement. */
+:root{--ps46-green:#0b4632;--ps46-yellow:#ffdb56;--ps46-cream:#f8f8f2}
+body.ps46-welcome-open{overflow:hidden}
+.ps46-welcome{position:fixed;inset:0;z-index:2500;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(2,35,23,.84);backdrop-filter:blur(12px)}
+.ps46-welcome.hidden{display:none!important}
+.ps46-welcome-shell{width:min(1080px,100%);max-height:min(760px,calc(100dvh - 30px));overflow:auto;background:#fffdf8;border:1px solid #e6ce7d;border-radius:27px;box-shadow:0 30px 95px #00170e66;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}
+.ps46-welcome-left{padding:40px 42px 27px;min-width:0}
+.ps46-welcome-logo{display:flex;align-items:center;gap:13px;color:#103e2c;font-family:'Plus Jakarta Sans',sans-serif;font-size:23px;letter-spacing:-.9px;font-weight:800}
+.ps46-welcome-logo img{width:46px;height:46px;object-fit:contain}
+.ps46-welcome-logo b{color:#bb8d11}
+.ps46-welcome-logo small{display:block;letter-spacing:1.5px;font:800 9px 'DM Sans',sans-serif;color:#708c79;margin-top:1px}
+.ps46-welcome-kicker{display:inline-block;margin-top:32px;letter-spacing:2px;color:#af8011;font-size:10px;font-weight:800}
+.ps46-welcome h2{font:800 clamp(29px,3vw,43px)/1.16 'Plus Jakarta Sans',sans-serif;letter-spacing:-1.7px;color:#0a3c2a;margin:10px 0 10px}
+.ps46-welcome h2 em{color:#d39d05;font-style:normal}
+.ps46-welcome-left>p{font-size:13px;color:#66776d;margin:0;max-width:465px;line-height:1.65}
+.ps46-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0 15px}
+.ps46-choice{border:1.5px solid #e4e7db;background:linear-gradient(170deg,#fff,#fcfcf5);border-radius:17px;padding:23px 16px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:6px;transition:transform .18s,border-color .18s,box-shadow .18s;color:#164632}
+.ps46-choice:hover,.ps46-choice:focus-visible{border-color:#edc73b;box-shadow:0 12px 28px rgba(167,122,25,.14);transform:translateY(-3px)}
+.ps46-choice-ico{width:64px;height:64px;border-radius:17px;display:grid;place-items:center;background:#e2f0e6;color:#0e6042;margin-bottom:12px}
+.ps46-choice:nth-child(2) .ps46-choice-ico{background:#fff1bc;color:#9b7616}
+.ps46-choice-ico .ui-icon{width:39px;height:39px;stroke-width:1.7}
+.ps46-choice strong{font:800 16px 'Plus Jakarta Sans',sans-serif}
+.ps46-choice small{font-size:11px;color:#819188}
+.ps46-choice-go{font-size:11px;font-weight:800;color:#0e7950;margin-top:12px}
+.ps46-welcome-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ps46-welcome-foot button{background:none;border:none;padding:10px 0;color:#256449;font-size:11px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.ps46-welcome-foot button:last-child{color:#75897c;text-decoration:none}
+.ps46-welcome-disclaimer{display:block;font-size:10px;color:#879489;margin-top:16px}
+.ps46-welcome-photo{position:relative;min-width:0;min-height:480px;background:#0d412f;overflow:hidden}
+.ps46-welcome-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(3,45,31,.92),rgba(4,43,33,.05) 70%)}
+.ps46-welcome-photo img{width:100%;height:100%;object-fit:cover;object-position:55% 50%;position:absolute;inset:0}
+.ps46-photo-label{position:absolute;bottom:35px;left:31px;right:25px;z-index:1;color:white}
+.ps46-photo-label span{font-size:10px;color:#ffe086;letter-spacing:2px;font-weight:800}
+.ps46-photo-label strong{font:800 25px/1.3 'Plus Jakarta Sans',sans-serif;display:block;margin-top:9px}
+.ps46-vehicle-switch{display:flex;align-items:center;border:1px solid #d6e3d8;border-radius:12px;padding:3px;gap:3px;background:#f3f7f2;white-space:nowrap}
+.ps46-vehicle-switch button{border:0;background:transparent;color:#6f8273;border-radius:9px;padding:8px 10px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800}
+.ps46-vehicle-switch button.active,.ps46-vehicle-switch button[aria-pressed="true"]{background:#0d573b;color:white;box-shadow:0 3px 8px #16543922}
+.ps46-vehicle-switch svg{width:17px;height:17px}
+.ps46-carousel{margin:22px 0 23px;min-width:0}
+.ps46-carousel-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:15px}
+.ps46-eyebrow{letter-spacing:1.7px;font-weight:800;font-size:10px;color:#a17c19}
+.ps46-carousel-heading h3,.ps46-list-intro h3{font:800 clamp(18px,2vw,24px) 'Plus Jakarta Sans',sans-serif;color:#0d432e;letter-spacing:-.7px;margin:6px 0}
+.ps46-carousel-heading p,.ps46-list-intro p{color:#819084;font-size:11px;margin:0}
+.ps46-carousel-controls{display:flex;gap:9px}
+.ps46-carousel-controls button{width:39px;height:39px;border-radius:50%;background:white;border:1px solid #e0dfc5;color:#164b36;font-size:20px;font-weight:800;box-shadow:0 2px 12px #133f2212}
+.ps46-carousel-controls button:hover{background:#ffdf69;border-color:#f4d052}
+.ps46-carousel-controls button:disabled{opacity:.4;cursor:default}
+.ps46-carousel-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#d8d29e #f7f9f3;padding:3px 2px 13px;overscroll-behavior-x:contain}
+.ps46-carousel-card{flex:0 0 clamp(235px,29%,300px);min-height:258px;overflow:hidden;scroll-snap-align:start;border-radius:18px;border:1px solid #e7e2cf;background:#fff;box-shadow:0 5px 16px #164f2c12;display:flex;flex-direction:column}
+.ps46-carousel-art{height:95px;background:radial-gradient(circle at 65% 38%,#fff7d0,#f4df9f);display:flex;align-items:center;justify-content:space-between;padding:8px 20px;position:relative;overflow:hidden}
+.ps46-carousel-art:before{content:'';position:absolute;right:-25px;top:-85px;width:180px;height:180px;border:1px solid #f1d077;box-shadow:0 0 0 28px #eccc6222,0 0 0 55px #eccc621c;border-radius:50%}
+.ps46-carousel-art img{width:70px;height:70px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 4px 6px #a9822645)}
+.ps46-carousel-art .ps46-art-vehicle{color:#154c38;position:relative;z-index:1;background:#fff7df;border-radius:14px;width:45px;height:45px;display:grid;place-items:center}
+.ps46-art-vehicle svg{width:27px;height:27px}
+.ps46-carousel-info{padding:17px 17px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.ps46-carousel-top{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ps46-carousel-top .ps46-faculty{font-size:10px;font-weight:800;color:#88620c;background:#fff1c9;padding:3px 8px;border-radius:6px}
+.ps46-carousel-card h4{font:800 14px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:-.3px;color:#113e2c;margin:1px 0 0}
+.ps46-carousel-card .ps46-note{font-size:11px;color:#718777;margin:0}
+.ps46-carousel-card .ps46-vacancy{margin-top:auto;font:800 17px 'Plus Jakarta Sans',sans-serif;color:#1a704d;padding-top:6px}
+.ps46-carousel-card .ps46-vacancy.pending{font-size:13px;color:#667e87}
+.ps46-carousel-actions{display:flex;gap:9px;margin-top:9px}
+.ps46-carousel-actions button,.ps46-carousel-actions a{flex:1;text-align:center;display:grid;place-items:center;min-height:35px;border-radius:9px;font-size:11px;font-weight:800}
+.ps46-carousel-actions button{border:1px solid #b5cfb7;background:#fff;color:#145b3b}
+.ps46-carousel-actions a{background:#ffdb56;color:#173d29;border:1px solid #f1ca40}
+.ps46-list-intro{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:24px 0 15px;border-top:1px solid #dde5d9;padding-top:20px}
+.ps46-list-intro #ps46ShownCounter{font-size:10px;font-weight:800;color:#36674e;background:#e7f3e8;border-radius:99px;padding:8px 11px;white-space:nowrap}
+.ps46-parking-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ps46-simple-card{background:white;border:1px solid #e3e7dd;border-radius:15px;box-shadow:0 4px 16px rgba(7,53,30,.07);padding:15px 16px;min-height:179px;display:flex;flex-direction:column;gap:10px;transition:transform .18s,box-shadow .18s,border-color .18s}
+.ps46-simple-card:hover,.ps46-simple-card:focus-within{transform:translateY(-3px);border-color:#e6c34a;box-shadow:0 11px 30px #85612118}
+.ps46-simple-top{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.ps46-simple-title{display:flex;align-items:center;gap:10px;min-width:0}
+.ps46-simple-title img{height:47px;width:47px;object-fit:contain;background:#fff0bc;border-radius:11px;padding:3px}
+.ps46-simple-title h4{font:800 12px/1.35 'Plus Jakarta Sans',sans-serif;margin:0;color:#163f2d}
+.ps46-simple-title small{font-size:10px;color:#728575}
+.ps46-simple-bottom{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:auto;border-top:1px solid #f0f0e6;padding-top:10px}
+.ps46-simple-bottom b{font:800 12px 'Plus Jakarta Sans',sans-serif;color:#195d3e}
+.ps46-simple-bottom b.pending{color:#6f8590}
+.ps46-simple-bottom button{border:0;background:#ffde65;color:#15432e;border-radius:9px;padding:8px 11px;font-size:10px;font-weight:800}
+.ps46-more-wrap{display:flex;justify-content:center;margin:18px 0 33px}
+.ps46-more-button{background:#fff;border:1px solid #b8cdb7;color:#14573c;font-weight:800;font-size:12px;border-radius:99px;padding:12px 26px;box-shadow:0 4px 12px #1b503313}
+.ps46-more-button:hover{background:#fff4c4;border-color:#eac844}
+.ps46-none{padding:25px 18px;background:#f1f5ee;border:1px dashed #d1dfcf;border-radius:12px;color:#648071;font-size:12px}
+#daftar{scroll-margin-top:92px}
+@media(max-width:1440px){.ps46-parking-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.ps46-carousel-card{flex-basis:280px}.ps46-vehicle-switch button{font-size:10px;padding:7px}}
+@media(max-width:1130px){.ps46-vehicle-switch button{padding:7px}.ps46-vehicle-switch .ui-icon{width:15px;height:15px}}
+@media(max-width:900px){.ps46-welcome-shell{grid-template-columns:1fr;max-width:650px}.ps46-welcome-photo{display:none}.ps46-welcome-left{padding:32px}.ps46-welcome-kicker{margin-top:25px}.ps46-parking-cards{grid-template-columns:1fr}.ps46-carousel-card{flex-basis:265px}}
+@media(max-width:750px){.ps46-vehicle-switch{gap:2px}.ps46-vehicle-switch button{font-size:0;padding:7px 9px}.ps46-vehicle-switch svg{width:19px;height:19px}.ps46-welcome{padding:13px}.ps46-welcome-shell{max-height:calc(100dvh - 20px)}.ps46-welcome-left{padding:26px}.ps46-welcome h2{font-size:30px}.ps46-choice-grid{gap:9px;margin-top:19px}.ps46-choice{padding:17px 11px}.ps46-choice-ico{width:51px;height:51px}.ps46-choice-ico .ui-icon{width:31px;height:31px}.ps46-choice strong{font-size:13px}.ps46-choice small{font-size:10px}.ps46-choice-go{font-size:10px}.ps46-welcome-foot{display:flex;flex-direction:column;align-items:flex-start;gap:0}.ps46-welcome-foot button{font-size:11px;padding:7px 0}}
+@media(max-width:530px){.ps46-vehicle-switch{border-radius:10px;padding:2px}.ps46-vehicle-switch button{padding:5px 6px}.ps46-vehicle-switch svg{width:17px;height:17px}.ps46-carousel-card{flex-basis:83%}.ps46-carousel-heading p{font-size:10px}.ps46-carousel-heading h3{font-size:19px}.ps46-simple-card{min-height:163px}.ps46-simple-title img{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.ps46-choice,.ps46-simple-card{transition:none}.ps46-carousel-track{scroll-behavior:auto}}

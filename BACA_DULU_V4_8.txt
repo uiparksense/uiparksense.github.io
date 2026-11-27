@@ -1,0 +1,35 @@
+UI PARKSENSE V4.8 — INFO PARKIR UI (TAHAP 2)
+=======================================================
+
+PERUBAHAN
+1. Tombol sidebar "14 Fakultas UI" menjadi "Info Parkir UI".
+2. Menu Beranda juga menaut ke Info Parkir UI.
+3. Halaman Info Parkir dengan layout kartu, pencarian, filter kategori, dan empty state.
+4. Halaman detail berita terpisah: info-parkir-detail.html?id=<UUID>.
+5. Katalog lama "14 Fakultas" disembunyikan agar tidak membingungkan,
+   tetapi elemen internalnya tetap tersedia untuk kompatibilitas kode lama.
+6. Belum ada berita contoh/fiktif di website utama.
+
+BELUM AKTIF DALAM TAHAP 2
+- Database tabel parking_announcements dan bucket gambar akan dibuat Tahap 3.
+- Form berita petugas tetap PRATINJAU saja, BELUM menyimpan ke Supabase.
+- Karena tabel belum ada, halaman Info Parkir akan menampilkan pesan
+  "Fitur berita sedang disiapkan". Ini disengaja dan aman.
+
+PANDUAN INSTALASI WINDOWS
+1. Backup V4.7 terakhir yang saat ini berfungsi.
+2. Copy config.js yang sudah bekerja dari V4.7 ke folder V4.8 ini.
+3. Jika sudah ada link Google Form, pindahkan feedback-config.js aktif.
+4. Deploy folder website lengkap pada project NETLIFY yang SAMA.
+5. Setelah Published, periksa menu Info Parkir UI, filter, halaman Pusat Bantuan,
+   pilihan Motor/Mobil, Peta dan login Admin.
+6. JANGAN menempelkan SERVICE_ROLE key di website!
+
+Tidak perlu SQL untuk Tahap 2. Tidak mengubah zona, akun, penugasan,
+penghitungan atau kapasitas Supabase.
+
+KETENTUAN KEAMANAN UNTUK TAHAP 3
+- RLS publik hanya boleh SELECT berita published, tidak membaca draft.
+- Hanya petugas yang ditugaskan dapat membuat/mengedit pengumuman di zona itu.
+- Foto perlu dibatasi ukuran/tipe dan kebijakan Supabase Storage.
+- Jangan pakai informasi fiktif atau gambar palsu sebagai berita resmi.
